@@ -23,6 +23,7 @@ require_once( DC_STARTER_PLUGIN_DIR . 'functions/do.php' );
 function dc_plugin_init(){
     // Custom VC_elements
     if ( class_exists( 'WPBakeryShortCode' )) {
+        require_once( DC_STARTER_PLUGIN_DIR . 'vc_elements/vc.carousel.php' );
         require_once( DC_STARTER_PLUGIN_DIR . 'vc_elements/vc.character.filter.php' );
     }
 }

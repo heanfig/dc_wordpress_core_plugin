@@ -28,7 +28,7 @@ class vcCharacterFilter extends WPBakeryShortCode {
                 'base' => 'custom_pair_icon',
                 'description' => __('Character Filter', 'dc'), 
                 'category' => __('DC Core Elements', 'dc'),   
-                'icon' => get_template_directory_uri().'/assets/img/vc-icon.png',            
+                'icon' => get_template_directory_uri() . '/vc_icons/vc.character.filter.png',            
                 'params' => array(   
                          
                     array(
@@ -43,58 +43,6 @@ class vcCharacterFilter extends WPBakeryShortCode {
                         'weight' => 0,
                         'group' => 'Field group',
                     ),
-                    /*array(
-                        'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => 'field-class',
-                        'heading' => __( "#1 Content", 'dc' ),
-                        'param_name' => 'icon_content1',
-                        'value' => __( "#1 Content", 'dc' ),
-                        'description' => __( "#1 Content", 'dc' ),
-                        'admin_label' => false,
-                        'weight' => 0,
-                        'group' => 'Field group',
-                    ),
-                    array(
-                        "type" => "attach_image",
-                        "holder" => "img",
-                        'heading' => __( "#1 Image", 'dc' ),
-                        "param_name" => "icon_image_url1",
-                        "description" => __( "Image", "dc" ),
-                        'group' => 'Field group',
-                    ),
-                    array(
-                        'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => 'field-class',
-                        'heading' => __( '#2 Title', 'dc' ),
-                        'param_name' => 'icon_title2',
-                        'value' => __( '#2 Title', 'dc' ),
-                        'description' => __( '#2 Title', 'dc' ),
-                        'admin_label' => false,
-                        'weight' => 0,
-                        'group' => 'Field group',
-                    ),
-                    array(
-                        'type' => 'textfield',
-                        'holder' => 'div',
-                        'class' => 'field-class',
-                        'heading' => __( "#2 Content", 'dc' ),
-                        'param_name' => 'icon_content2',
-                        'value' => __( "#2 Content", 'dc' ),
-                        'description' => __( "#2 Content", 'dc' ),
-                        'admin_label' => false,
-                        'weight' => 0,
-                        'group' => 'Field group',
-                    ),
-                    array(
-                        "type" => "attach_image",
-                        "holder" => "img",
-                        'heading' => __( "#2 Image", 'dc' ),
-                        "param_name" => "icon_image_url2",
-                        "description" => __( "Image", "dc" ),
-                        'group' => 'Field group',
-                    )*/
 
                 ),
             )
