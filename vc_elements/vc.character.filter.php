@@ -10,7 +10,7 @@ class vcCharacterFilter extends WPBakeryShortCode {
     // Element Init
     function __construct() {
         add_action( 'init', array( $this, 'vc_custom_mapping' ) );
-        add_shortcode( 'custom_pair_icon', array( $this, 'vc_custom_html' ) );
+        add_shortcode( 'dc_character_filter', array( $this, 'vc_custom_html' ) );
     }
      
     // Element Mapping
@@ -25,7 +25,7 @@ class vcCharacterFilter extends WPBakeryShortCode {
         vc_map( 
             array(
                 'name' => __('Character Filter', 'dc'),
-                'base' => 'custom_pair_icon',
+                'base' => 'dc_character_filter',
                 'description' => __('Character Filter', 'dc'), 
                 'category' => __('DC Core Elements', 'dc'),   
                 'icon' => get_template_directory_uri() . '/vc_icons/vc.character.filter.png',            
@@ -34,11 +34,47 @@ class vcCharacterFilter extends WPBakeryShortCode {
                     array(
                         'type' => 'textfield',
                         'holder' => 'div',
-                        'class' => 'field-class',
-                        'heading' => __( "#1 Title", 'dc' ),
-                        'param_name' => 'icon_title1',
-                        'value' => __( "#1 Title", 'dc' ),
-                        'description' => __( "#1 Title", 'dc' ),
+                        'class' => '',
+                        'heading' => __( "Title", 'dc' ),
+                        'param_name' => 'character_title',
+                        'value' => __( "Title", 'dc' ),
+                        'description' => __( "Title", 'dc' ),
+                        'admin_label' => false,
+                        'weight' => 0,
+                        'group' => 'Field group',
+                    ),
+                    array(
+                        'type' => 'textfield',
+                        'holder' => 'div',
+                        'class' => '',
+                        'heading' => __( "Subtitle", 'dc' ),
+                        'param_name' => 'character_subtitle',
+                        'value' => __( "Subtitle", 'dc' ),
+                        'description' => __( "Subtitle", 'dc' ),
+                        'admin_label' => false,
+                        'weight' => 0,
+                        'group' => 'Field group',
+                    ),
+                    array(
+                        'type' => 'checkbox',
+                        'holder' => 'div',
+                        'class' => '',
+                        'heading' => __( "Type Filter", 'dc' ),
+                        'param_name' => 'type_filter',
+                        'value' => __( "Type Filter", 'dc' ),
+                        'description' => __( "Type Filter", 'dc' ),
+                        'admin_label' => false,
+                        'weight' => 0,
+                        'group' => 'Field group',
+                    ),
+                    array(
+                        'type' => 'textfield',
+                        'holder' => 'div',
+                        'class' => '',
+                        'heading' => __( "Character Count", 'dc' ),
+                        'param_name' => 'character_count',
+                        'value' => __( "5", 'dc' ),
+                        'description' => __( "Character Count", 'dc' ),
                         'admin_label' => false,
                         'weight' => 0,
                         'group' => 'Field group',
@@ -56,16 +92,22 @@ class vcCharacterFilter extends WPBakeryShortCode {
         extract(
             shortcode_atts(
                 array(
-                    'icon_title1'   => '',
+                    'character_title'   => '',
+                    'character_subtitle'   => '',
+                    'character_count' => '',
+                    'type_filter' => ''
                 ), 
                 $atts
             )
         );		
         ob_start();
+
+        $posts_per_page = is_numeric(trim($character_count)) ? $character_count : 5;
         
         $args = array(
             'post_type' => 'character',
-            'post_status' => 'publish'
+            'post_status' => 'publish',
+            'posts_per_page' => $posts_per_page
         );
         
         $query = new WP_Query( $args );
@@ -74,39 +116,63 @@ class vcCharacterFilter extends WPBakeryShortCode {
                 <?php if ( $query->have_posts() ) { ?>
                     <h2 class="dc-heading">
                         <div class="dc-heading__secondary">
-                            <span>Character</span>
+                            <span><?php echo $character_title; ?></span>
                         </div>
                         <div class="dc-heading__primary">
-                            <span>List</span>
+                            <span><?php echo $character_subtitle; ?></span>
                         </div>
                     </h2>
-                    <div class="row dc-character-loop_content">
+                    <?php if($type_filter){ ?>
+                        <div class="dc-character-filter">
+                            <div class="dc-character-count">
+                                <h2> <?php echo __( "Characters", 'dc' ); ?>
+                                <span> (<?php echo $query->post_count; ?>) </span> </h2>
+                            </div>
+                            <div class="dc-character-filter">
+                                <form class="dc-character-form">
+                                    <input type="text" placeholder="<?php echo __( "ej Batman..", 'dc' ); ?> ">
+                                    <select>
+                                        <option> Villain </option>
+                                        <option> Hero </option>
+                                    </select>
+                                    <button type="submit" value="search">
+                                </form>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div class="dc-character-loop_content">
+                        <div class="dc-character-preloader">
+                            <div class="dc-character-icon">
+                              <i class="fas fa-sync fa-spin"></i>
+                            </div>
+                        </div>
                         <?php while ( $query->have_posts() ) { ?>
                             <?php 
                                 $query->the_post(); 
                                 $title = get_the_title();
                                 $permalink = get_the_permalink();
-                                $excerpt_content = get_the_excerpt();
                                 $featured_img_url = wp_get_attachment_image_src( get_post_thumbnail_id(),'full' );
+                                $last_action = get_post_meta(get_the_ID(), 'last_action' , true ); 
+                                $source_powers = get_post_meta( get_the_ID(), 'source_powers', true ); 
+                                $weakness = get_post_meta( get_the_ID(), 'weakness', true ); 
+                                $taxonomies = get_the_terms( get_the_ID(), 'character_type' );
+                                $taxonomy_icon = resolve_character_icon($taxonomies);
                             ?>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <?php if(has_post_thumbnail()){ ?>
-                                            <img class="card-img-top" src="<?php echo $featured_img_url[0]; ?>" alt="<?php echo $title; ?>">
-                                        <?php } ?>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <?php echo $title; ?>
-                                            </h5>
-                                            <p class="card-text">
-                                                <?php echo $excerpt_content; ?>
-                                            </p>
-                                            <a href="<?php echo $permalink; ?>" class="btn btn-primary">
-                                                <?php echo __('Read more', 'dc');  ?>
-                                            </a>
+                                <a class="dc-character-item" href="<?php echo $permalink; ?>">
+                                    <div class="_dc-character-item">
+                                        <div class="card">
+                                            <?php if(has_post_thumbnail()){ ?>
+                                                <img class="card-img-top" src="<?php echo $featured_img_url[0]; ?>" alt="<?php echo $title; ?>">
+                                            <?php } ?>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <i class="fas <?php echo $taxonomy_icon; ?>"></i>
+                                                    <?php echo $title; ?>
+                                                </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div> 
+                                    </div> 
+                                </a>
                         <?php } ?>
                     </div>
                 <?php } ?>
