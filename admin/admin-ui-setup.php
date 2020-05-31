@@ -102,9 +102,9 @@ function prefix_enqueue_css_js( $hook ) {
 	}
 	
 	// Main CSS
-	// wp_enqueue_style( 'prefix-admin-main-css', PREFIX_STARTER_PLUGIN_URL . 'admin/css/main.css', '', PREFIX_VERSION_NUM );
+	// wp_enqueue_style( 'prefix-admin-main-css', DC_STARTER_PLUGIN_URL . 'admin/css/main.css', '', DC_VERSION_NUM );
 	
 	// Main JS
-    // wp_enqueue_script( 'prefix-admin-main-js', PREFIX_STARTER_PLUGIN_URL . 'admin/js/main.js', array( 'jquery' ), false, true );
+    // wp_enqueue_script( 'prefix-admin-main-js', DC_STARTER_PLUGIN_URL . 'admin/js/main.js', array( 'jquery' ), false, true );
 }
 add_action( 'admin_enqueue_scripts', 'prefix_enqueue_css_js' );

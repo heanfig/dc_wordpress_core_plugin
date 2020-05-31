@@ -47,7 +47,7 @@ function prefix_settings_link( $links ) {
 		$links
 	);
 }
-add_filter( 'plugin_action_links_' . PREFIX_STARTER_PLUGIN . '/prefix_starter-plugin.php', 'prefix_settings_link' );
+add_filter( 'plugin_action_links_' . DC_STARTER_PLUGIN . '/prefix_starter-plugin.php', 'prefix_settings_link' );
 
 /**
  * Add donate and other links to plugins list
@@ -106,6 +106,6 @@ function prefix_footer_version($default) {
 		return $default;
 	}
 	
-	return 'Plugin version ' . PREFIX_VERSION_NUM;
+	return 'Plugin version ' . DC_VERSION_NUM;
 }
 add_filter( 'update_footer', 'prefix_footer_version', 11 );

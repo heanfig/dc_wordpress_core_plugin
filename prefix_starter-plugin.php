@@ -49,7 +49,7 @@
  * - Update UI format and settings		in \admin\admin-ui-render.php
  * - Update uninstall.php
  * - Update readme.txt
- * - Update PREFIX_VERSION_NUM 			in prefix_starter-plugin.php (keep this line for future updates)
+ * - Update DC_VERSION_NUM 			in prefix_starter-plugin.php (keep this line for future updates)
  */
 
 // Exit if accessed directly
@@ -60,10 +60,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.0
  */
-if ( ! defined( 'PREFIX_VERSION_NUM' ) ) 		define( 'PREFIX_VERSION_NUM'		, '1.0' ); // Plugin version constant
-if ( ! defined( 'PREFIX_STARTER_PLUGIN' ) )		define( 'PREFIX_STARTER_PLUGIN'		, trim( dirname( plugin_basename( __FILE__ ) ), '/' ) ); // Name of the plugin folder eg - 'starter-plugin'
-if ( ! defined( 'PREFIX_STARTER_PLUGIN_DIR' ) )	define( 'PREFIX_STARTER_PLUGIN_DIR'	, plugin_dir_path( __FILE__ ) ); // Plugin directory absolute path with the trailing slash. Useful for using with includes eg - /var/www/html/wp-content/plugins/starter-plugin/
-if ( ! defined( 'PREFIX_STARTER_PLUGIN_URL' ) )	define( 'PREFIX_STARTER_PLUGIN_URL'	, plugin_dir_url( __FILE__ ) ); // URL to the plugin folder with the trailing slash. Useful for referencing src eg - http://localhost/wp/wp-content/plugins/starter-plugin/
+if ( ! defined( 'DC_VERSION_NUM' ) ) 		define( 'DC_VERSION_NUM'		, '1.0' ); // Plugin version constant
+if ( ! defined( 'DC_STARTER_PLUGIN' ) )		define( 'DC_STARTER_PLUGIN'		, trim( dirname( plugin_basename( __FILE__ ) ), '/' ) ); // Name of the plugin folder eg - 'starter-plugin'
+if ( ! defined( 'DC_STARTER_PLUGIN_DIR' ) )	define( 'DC_STARTER_PLUGIN_DIR'	, plugin_dir_path( __FILE__ ) ); // Plugin directory absolute path with the trailing slash. Useful for using with includes eg - /var/www/html/wp-content/plugins/starter-plugin/
+if ( ! defined( 'DC_STARTER_PLUGIN_URL' ) )	define( 'DC_STARTER_PLUGIN_URL'	, plugin_dir_url( __FILE__ ) ); // URL to the plugin folder with the trailing slash. Useful for referencing src eg - http://localhost/wp/wp-content/plugins/starter-plugin/
 
 /**
  * Add plugin version to database
@@ -71,10 +71,10 @@ if ( ! defined( 'PREFIX_STARTER_PLUGIN_URL' ) )	define( 'PREFIX_STARTER_PLUGIN_U
  * @refer https://codex.wordpress.org/Creating_Tables_with_Plugins#Adding_an_Upgrade_Function
  * @since 1.0
  */
-update_option( 'abl_prefix_version', PREFIX_VERSION_NUM );	// Change this to add_option if a release needs to check installed version.
+update_option( 'abl_prefix_version', DC_VERSION_NUM );	// Change this to add_option if a release needs to check installed version.
 
 // Load everything
-require_once( PREFIX_STARTER_PLUGIN_DIR . 'loader.php' );
+require_once( DC_STARTER_PLUGIN_DIR . 'loader.php' );
 
 // Register activation hook (this has to be in the main plugin file or refer bit.ly/2qMbn2O)
 register_activation_hook( __FILE__, 'prefix_activate_plugin' );
