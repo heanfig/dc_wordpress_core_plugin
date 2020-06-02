@@ -10,12 +10,6 @@
  * Domain Path: /languages
  * License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
-
-/**
- * This plugin was developed using the WordPress starter plugin template by Arun Basil Lal <arunbasillal@gmail.com>
- * Please leave this credit and the directory structure intact for future developers who might read the code.
- * @GitHub https://github.com/arunbasillal/WordPress-Starter-Plugin
- */
  
 /**
  * ~ Directory Structure ~
@@ -30,26 +24,6 @@
  * prefix_starter-plugin.php	- Main plugin file containing plugin name and other version info for WordPress.
  * readme.txt					- Readme for WordPress plugin repository. https://wordpress.org/plugins/files/2018/01/readme.txt
  * uninstall.php				- Fired when the plugin is uninstalled. 
- */
- 
-/**
- * ~ TODO ~
- *
- * - Note: (S&R) = Search and Replace by matching case.
- *
- * - Plugin name: Starter Plugin (S&R)
- * - Plugin folder slug: starter-plugin (S&R)
- * - Decide on a prefix for the plugin (S&R)
- * - Plugin description
- * - Text domain. Text domain for plugins has to be the folder name of the plugin. For eg. if your plugin is in /wp-content/plugins/abc-def/ folder text domain should be abc-def (S&R)
- * - Update prefix_settings_link() 		in \admin\basic-setup.php
- * - Update prefix_footer_text()		in \admin\basic-setup.php
- * - Update prefix_add_menu_links() 	in \admin\admin-ui-setup.php
- * - Update prefix_register_settings() 	in \admin\admin-ui-setup.php
- * - Update UI format and settings		in \admin\admin-ui-render.php
- * - Update uninstall.php
- * - Update readme.txt
- * - Update DC_VERSION_NUM 			in prefix_starter-plugin.php (keep this line for future updates)
  */
 
 // Exit if accessed directly
