@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: DC Core
- * Plugin URI: https://github.com/arunbasillal/WordPress-Starter-Plugin
+ * Plugin URI: https://github.com/heanfig/dc_wordpress_core_plugin
  * Description: A UI Toolkit plugin for WordPress complete with components for VC plugin
  * Author: Herman Andres
  * Author URI: https://github.com/heanfig

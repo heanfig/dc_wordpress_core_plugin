@@ -57,10 +57,8 @@ add_filter( 'plugin_action_links_' . DC_STARTER_PLUGIN . '/prefix_starter-plugin
 function prefix_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'prefix_starter-plugin.php' ) !== false ) {
 		$new_links = array(
-				'donate' 	=> '<a href="http://millionclues.com/donate/" target="_blank">Donate</a>',
-				'kuttappi' 	=> '<a href="http://kuttappi.com/" target="_blank">My Travelogue</a>',
-				'hireme' 	=> '<a href="http://millionclues.com/portfolio/" target="_blank">Hire Me For A Project</a>',
-				);
+			'About me' 	=> '<a href="http://about.me/heanfig" target="_blank">About Me</a>',
+		);
 		$links = array_merge( $links, $new_links );
 	}
 	return $links;

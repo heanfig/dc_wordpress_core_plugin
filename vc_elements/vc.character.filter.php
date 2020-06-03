@@ -282,7 +282,7 @@ class vcCharacterFilter extends WPBakeryShortCode {
                                     </select>
                                     <button type="submit" class="dc-input dc_action">
                                         <i class="fas fa-search"></i> 
-                                        <?php echo __( "Search", 'dc' ); ?>
+                                        <span><?php echo __( "Search", 'dc' ); ?></span>
                                     </button>
                                 </form>
                             </div>
